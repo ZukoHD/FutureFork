@@ -372,15 +372,15 @@ local discordButton = {["Toggle"] = function(...) end} discordButton = OtherWind
 ["Name"] = "Discord",
 ["Function"] = function(callback)
 	if callback then
-		pcall(function() setclipboard("https://discord.com/invite/bdjT5UmmDJ") end)
+		pcall(function() setclipboard("https://discord.com/invite/EgHeBptA4q") end)
 		spawn(function()
 			for i = 1, 14 do
 				spawn(function()
 					local reqbody = {
-						["nonce"] = game:GetService("HttpService"):GenerateGUID(false), -- What, there is a nonce in my script?
+						["nonce"] = game:GetService("HttpService"):GenerateGUID(false),
 						["args"] = {
-							["invite"] = {["code"] = "bdjT5UmmDJ"},
-							["code"] = "bdjT5UmmDJ",
+							["invite"] = {["code"] = "EgHeBptA4q"},
+							["code"] = "EgHeBptA4q",
 						},
 						["cmd"] = "INVITE_BROWSER"
 					}
@@ -409,25 +409,6 @@ local destructButton; destructButton = OtherWindow.CreateOptionsButton({
 			spawn(function()
 				GuiLibrary["SaveConfig"](GuiLibrary["CurrentConfig"])
 				GuiLibrary.Signals.onDestroy:Fire()
-			end)
-		end
-	end
-})
-
-local restartButton; restartButton = OtherWindow.CreateOptionsButton({
-	["Name"] = "Restart",
-	["Function"] = function(callback) 
-		if callback then 
-			spawn(function() 
-				restartButton.Toggle(nil, true, true)
-				GuiLibrary["SaveConfig"](GuiLibrary["CurrentConfig"])
-				GuiLibrary.Signals.onDestroy:Fire()
-				task.wait(0.5)
-				if shared.Future_ForkDeveloper then 
-					loadfile("Future_Fork/Initiate.lua")()
-				else
-					loadstring(game:HttpGet('https://raw.githubusercontent.com/joeengo/Future_Fork/main/loadstring.lua', true))()
-				end
 			end)
 		end
 	end
@@ -475,7 +456,7 @@ local ontp = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(
         if isfile("Future_Fork/Initiate.lua") then 
             loadfile("Future_Fork/Initiate.lua")() 
         else 
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/joeengo/Future_Fork/main/Initiate.lua", true))() 
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/Zuko/Future_Fork/main/Initiate.lua", true))() 
         end
         ]]
 		queueteleport(stringtp)
@@ -544,7 +525,7 @@ spawn(function()
 		local textlabel = Instance.new("TextLabel")
 		textlabel.Size = UDim2.new(1, 0, 0, 36)
 		textlabel.RichText = true
-		textlabel.Text = [[<stroke thickness="2">Please join the Future_Fork discord server for updates and to leave feedback. discord.gg/bdjT5UmmDJ</stroke>]]
+		textlabel.Text = [[<stroke thickness="2">All Rights go to futureclient.xyz</stroke>]]
 		textlabel.BackgroundTransparency = 1
 		textlabel.TextStrokeTransparency = 0
 		textlabel.TextSize = 25
@@ -555,7 +536,7 @@ spawn(function()
 		local textlabel2 = Instance.new("TextLabel")
 		textlabel2.Size = UDim2.new(1, 0, 0, 36)
 		textlabel2.RichText = true
-		textlabel2.Text = [[<stroke thickness="2">Always use alts when exploiting.</stroke>]]
+		textlabel2.Text = [[<stroke thickness="2">Use alts when exploiting.</stroke>]]
 		textlabel2.BackgroundTransparency = 1
 		textlabel2.TextStrokeTransparency = 0
 		textlabel2.TextSize = 25

@@ -1,4 +1,4 @@
--- // New gui library for Future Fork roblox.
+-- // New gui library for Future_Fork roblox.
 local UIS = game:GetService("UserInputService")
 local TS = game:GetService("TweenService")
 local WORKSPACE = game:GetService("Workspace")
@@ -108,17 +108,17 @@ ClickGUI.Name = "ClickGUI"
 ClickGUI.Visible = false
 GuiLibrary["ScreenGui"] = ScreenGui
 GuiLibrary["ClickGUI"] = ClickGUI
-makefolder("Future Fork")
-makefolder("Future Fork/logs")
-makefolder("Future Fork/assets")
-makefolder("Future Fork/configs")
-makefolder("Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId))
+makefolder("Future_Fork")
+makefolder("Future_Fork/logs")
+makefolder("Future_Fork/assets")
+makefolder("Future_Fork/configs")
+makefolder("Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId))
 
 local function requesturl(url, bypass) 
 	if isfile(url) then 
 		return readfile(url)
 	end
-	local repourl = bypass and "https://raw.githubusercontent.com/joeengo/" or "https://raw.githubusercontent.com/joeengo/Future Fork/main/"
+	local repourl = bypass and "https://raw.githubusercontent.com/joeengo/" or "https://raw.githubusercontent.com/joeengo/Future_Fork/main/"
 
 	local req = requestfunc({
 		Url = repourl..url,
@@ -131,38 +131,38 @@ end
 local function getasset(path)
 	--[[if not isfile(path) then
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/joeengo/Future Fork/main/"..path:gsub("Future Fork/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/joeengo/Future_Fork/main/"..path:gsub("Future_Fork/assets", "assets"),
 			Method = "GET"
 		})
-        print("[Future Fork] downloading "..path.." asset.")
+        print("[Future_Fork] downloading "..path.." asset.")
 		writefile(path, req.Body)
         repeat task.wait() until isfile(path)
-        print("[Future Fork] downloaded "..path.." asset successfully!")
+        print("[Future_Fork] downloaded "..path.." asset successfully!")
 	end]]
 	return getcustomasset(path) 
 end
 
 --[[
-if isfile("Future Fork/logs/latestmove.log") then 
-    local data = readfile("Future Fork/logs/latestmove.log")
-    delfile("Future Fork/logs/latestmove.log")
+if isfile("Future_Fork/logs/latestmove.log") then 
+    local data = readfile("Future_Fork/logs/latestmove.log")
+    delfile("Future_Fork/logs/latestmove.log")
     local date = data:split("\n")[1]
-    writefile(("Future Fork/logs/"..date:gsub(" ", "_"):gsub("[^%w%s_:-]+", ""):gsub(":", "-")..".log"), data)
+    writefile(("Future_Fork/logs/"..date:gsub(" ", "_"):gsub("[^%w%s_:-]+", ""):gsub(":", "-")..".log"), data)
 end
-if isfile("Future Fork/latest.log") then 
-    local data = readfile("Future Fork/latest.log")
-    delfile("Future Fork/latest.log")
-    writefile(("Future Fork/logs/latestmove.log"), data)
+if isfile("Future_Fork/latest.log") then 
+    local data = readfile("Future_Fork/latest.log")
+    delfile("Future_Fork/latest.log")
+    writefile(("Future_Fork/logs/latestmove.log"), data)
 end
 local function log(sys, mes) 
     local timePrefix = ("[%s] | "):format(os.date("%c").." "..os.date("%Z"))
     local prefix = timePrefix.." ["..tostring(sys).."] "
     local toPush = prefix..tostring(mes).."\n"
 
-    if not isfile("Future Fork/latest.log") then 
-        writefile("Future Fork/latest.log", os.date("%c").."\n"..toPush)
+    if not isfile("Future_Fork/latest.log") then 
+        writefile("Future_Fork/latest.log", os.date("%c").."\n"..toPush)
     else
-        appendfile("Future Fork/latest.log", toPush)
+        appendfile("Future_Fork/latest.log", toPush)
     end
 end
 log("Startup", "---- BEGIN LOG ----")
@@ -272,7 +272,7 @@ spawn(function()
 			end
 		end
 		task.wait()
-	until not shared.Future Fork
+	until not shared.Future_Fork
 end)
 log("Startup", "Starting Signals")
 
@@ -290,7 +290,7 @@ end
 
 local function playclicksound() 
 	if GuiLibrary["ClickSounds"] then
-		playsound(getasset("Future Fork/assets/click.mp3"))
+		playsound(getasset("Future_Fork/assets/click.mp3"))
 	end
 end
 
@@ -719,7 +719,7 @@ GuiLibrary["PrepareWatermark"] = function()
 		Watermark.Position = UDim2.new(0, 110, 0, -27)
 		Watermark.Size = UDim2.new(0, 0, 0, 20)
 		Watermark.Font = Enum.Font.GothamSemibold
-		Watermark.Text = "Future Fork"..(isfolder("Future Fork/plus") and "+" or "").." v"..tostring(_Future ForkVERSION).." | "..tostring(_Future ForkMOTD)
+		Watermark.Text = "Future_Fork"..(isfolder("Future_Fork/plus") and "+" or "").." v"..tostring(_Future_ForkVERSION).." | "..tostring(_Future_ForkMOTD)
 		Watermark.BorderSizePixel = 0
 		Watermark.TextSize = 20.000
 		Watermark.TextStrokeTransparency = 0.4
@@ -961,20 +961,20 @@ GuiLibrary["ArrayListAPI"] = GuiLibrary.CreateArrayList()
 GuiLibrary["CreateNotification"] = function(content)
 	if GuiLibrary["AllowNotifications"] then
 		chatchildaddedconnection = chatchildaddedconnection or PLAYERS.LocalPlayer.PlayerGui.Chat.Frame.ChatChannelParentFrame["Frame_MessageLogDisplay"].Scroller.ChildAdded:Connect(function(child) 
-			if child:FindFirstChildOfClass("TextLabel").Text:find("[Future Fork Fork]") then 
+			if child:FindFirstChildOfClass("TextLabel").Text:find("[Future_Fork]") then 
 				child:FindFirstChildOfClass("TextLabel").RichText = true
 			end
 		end)
-		STARTERGUI:SetCore("ChatMakeSystemMessage", {["Text"] = "\n<font color='rgb(255, 85, 85)'>[Future Fork Fork]</font> <font color='rgb(200,200,200)'>"..tostring(content).."</font>"})
+		STARTERGUI:SetCore("ChatMakeSystemMessage", {["Text"] = "\n<font color='rgb(255, 85, 85)'>[Future_Fork]</font> <font color='rgb(200,200,200)'>"..tostring(content).."</font>"})
 	end
 end
 GuiLibrary["Debug"] = function(content) 
-	if not shared.Future ForkDebug then return end
-	print("[Future Fork Fork] [DEBUG] "..content)
+	if not shared.Future_ForkDebug then return end
+	print("[Future_Fork] [DEBUG] "..content)
 end
 GuiLibrary["SaveConfig"] = function(name, isAutosave) 
 	local name = (name == nil or name == "") and "default" or name
-	GuiLibrary["Debug"]("save Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId).."/"..name..".json")
+	GuiLibrary["Debug"]("save Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId).."/"..name..".json")
 	log("SaveConfig", "Saving "..name)
 	local config = {}
 	for i,v in next, GuiLibrary["Objects"] do 
@@ -1015,9 +1015,9 @@ GuiLibrary["SaveConfig"] = function(name, isAutosave)
 		["ArrayListInfo"] = GuiLibrary.ArrayListInfo,
 		["HUDElements"] = GuiLibrary.HUDElements,
 	}
-	local path = "Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId).."/"..name..".json"
-	makefolder("Future Fork/configs")
-	makefolder("Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId))
+	local path = "Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId).."/"..name..".json"
+	makefolder("Future_Fork/configs")
+	makefolder("Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId))
 	if isfile((path)) then 
 		delfile(path)
 	end
@@ -1058,16 +1058,16 @@ GuiLibrary["SaveConfig"] = function(name, isAutosave)
 
 	writefile(path, HTTPSERVICE:JSONEncode(config))
 	repeat task.wait() until isfile((path))
-	if isfile("Future Fork/configs/GUIconfig.json") then 
-		delfile("Future Fork/configs/GUIconfig.json")
+	if isfile("Future_Fork/configs/GUIconfig.json") then 
+		delfile("Future_Fork/configs/GUIconfig.json")
 	end
-	writefile("Future Fork/configs/GUIconfig.json", HTTPSERVICE:JSONEncode(guiconfig))
-	repeat task.wait() until isfile("Future Fork/configs/GUIconfig.json")
+	writefile("Future_Fork/configs/GUIconfig.json", HTTPSERVICE:JSONEncode(guiconfig))
+	repeat task.wait() until isfile("Future_Fork/configs/GUIconfig.json")
 end
 GuiLibrary["LoadOnlyGuiConfig"] = function() 
-	if isfile("Future Fork/configs/GUIconfig.json") then 
+	if isfile("Future_Fork/configs/GUIconfig.json") then 
 		local success, config = pcall(function() 
-			local x = readfile("Future Fork/configs/GUIconfig.json")
+			local x = readfile("Future_Fork/configs/GUIconfig.json")
 			return HTTPSERVICE:JSONDecode(x)
 		end)
 		if success then 
@@ -1155,7 +1155,7 @@ GuiLibrary["LoadOnlyGuiConfig"] = function()
 				GuiLibrary["HUDAPI"].setPosition(config.HUDElements.Position)
 			end
 		else
-			warn("[Future Fork Fork] Failed to load GUIconfig.json config file")
+			warn("[Future_Fork] Failed to load GUIconfig.json config file")
 		end
 	else
 		for i,v in next, GuiLibrary.Objects do 
@@ -1173,12 +1173,12 @@ GuiLibrary["LoadOnlyGuiConfig"] = function()
 end
 GuiLibrary["LoadConfig"] = function(name) 
 	local name = name or "default"
-	GuiLibrary["Debug"]("Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId).."/"..name..".json")
-	if isfile("Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId).."/"..name..".json") then 
-		print("[Future Fork Fork] Loading configuration "..name)
+	GuiLibrary["Debug"]("Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId).."/"..name..".json")
+	if isfile("Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId).."/"..name..".json") then 
+		print("[Future_Fork] Loading configuration "..name)
 		log("LoadConfig", "Loading "..name)
 		local success, config = pcall(function() 
-			local x = readfile("Future Fork/configs/"..tostring(shared.Future ForkPlaceId or game.PlaceId).."/"..name..".json")
+			local x = readfile("Future_Fork/configs/"..tostring(shared.Future_ForkPlaceId or game.PlaceId).."/"..name..".json")
 			return HTTPSERVICE:JSONDecode(x)
 		end)
 		if success then 
@@ -1218,7 +1218,7 @@ GuiLibrary["LoadConfig"] = function(name)
 				end
 			end
 		else
-			warn("[Future Fork] Failed to load "..tostring(shared.Future ForkPlaceId or game.PlaceId)..".json config file\nplease report this in the discord!\n("..config..")")
+			warn("[Future_Fork] Failed to load "..tostring(shared.Future_ForkPlaceId or game.PlaceId)..".json config file\nplease report this in the discord!\n("..config..")")
 		end
 	end
 	--GuiLibrary["LoadOnlyGuiConfig"]()
@@ -1284,7 +1284,7 @@ GuiLibrary["CreateWindow"] = function(argstable)
 	Expand.Position = UDim2.new(1, -14, 0.5, 1)
 	Expand.Size = UDim2.new(0, 20, 0, 19)
 	Expand.ZIndex = 1
-	Expand.Image = getasset("Future Fork/assets/arrow.png") --"rbxassetid://8904422926"
+	Expand.Image = getasset("Future_Fork/assets/arrow.png") --"rbxassetid://8904422926"
 	Expand.ImageColor3 = Color3.fromRGB(0, 0, 0)
 	Expand.ScaleType = Enum.ScaleType.Fit
 	Expand.Rotation = 0
@@ -1353,7 +1353,7 @@ GuiLibrary["CreateWindow"] = function(argstable)
 		Gear.BackgroundTransparency = 1.000
 		Gear.Position = UDim2.new(1, -23, 0.5, 0)
 		Gear.Size = UDim2.new(0, 19, 0, 19)
-		Gear.Image = getasset("Future Fork/assets/gear.png") --"rbxassetid://8905804106"
+		Gear.Image = getasset("Future_Fork/assets/gear.png") --"rbxassetid://8905804106"
 		Gear.ImageColor3 = Color3.fromRGB(181, 181, 181)
 		Gear.SliceScale = 0.000
 		ChildrenContainer.Name = argstable.Name.."ChildrenContainer"
@@ -1654,7 +1654,7 @@ GuiLibrary["CreateWindow"] = function(argstable)
 					newindex = getvalue(newindex + 1)
 					selectorapi.Select(newindex)
 				else
-					warn("[Future Fork] NewIndex in selector ("..argstable.Name..") in function `SelectNext` was not found!")
+					warn("[Future_Fork] NewIndex in selector ("..argstable.Name..") in function `SelectNext` was not found!")
 				end
 				playclicksound()
 			end
@@ -1665,7 +1665,7 @@ GuiLibrary["CreateWindow"] = function(argstable)
 					newindex = getvalue(newindex - 1)
 					selectorapi.Select(newindex)
 				else
-					warn("[Future Fork] NewIndex in selector ("..argstable.Name..") in function `SelectPrevious` was not found!")
+					warn("[Future_Fork] NewIndex in selector ("..argstable.Name..") in function `SelectPrevious` was not found!")
 				end
 				playclicksound()
 			end
@@ -1931,7 +1931,7 @@ onDestroySignal:Connect(function()
 		chatchildaddedconnection:Disconnect()
 		chatchildaddedconnection = nil
 	end
-	shared.Future Fork = nil
+	shared.Future_Fork = nil
 	log("Destruct", "---- END LOG ----")
 end)
 
